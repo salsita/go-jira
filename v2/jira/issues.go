@@ -111,7 +111,23 @@ func (service *IssueService) Search(opts *SearchOptions) ([]*Issue, *http.Respon
 	return issueList.Issues, resp, nil
 }
 
-// Updates issue with `issueIdOrKey`.
+// Get returns the chosen issue.
+func (service *IssueService) Get(issueIdOrKey string) (*Issue, *http.Response, error) {
+	u := fmt.Sprintf("issue/%v", issueIdOrKey)
+	req, err := service.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var issue Issue
+	resp, err := service.client.Do(req, &issue)
+	if err != nil {
+		return nil, nil, err
+	}
+	return &issue, resp, nil
+}
+
+// Update updates the chosen issue.
 func (service *IssueService) Update(issueIdOrKey string, body interface{}) (*http.Response, error) {
 	u := fmt.Sprintf("issue/%v", issueIdOrKey)
 	req, err := service.client.NewRequest("PUT", u, body)
@@ -121,8 +137,12 @@ func (service *IssueService) Update(issueIdOrKey string, body interface{}) (*htt
 	return service.client.Do(req, nil)
 }
 
-// Performs the requested transition for the chosen issue.
-func (service *IssueService) PerformTransition(issueIdOrKey, transitionId string) (*http.Response, error) {
+// PerformTransition performs the requested transition for the chosen issue.
+func (service *IssueService) PerformTransition(
+	issueIdOrKey string,
+	transitionId string,
+) (*http.Response, error) {
+
 	u := fmt.Sprintf("issue/%v/transitions", issueIdOrKey)
 	p := M{
 		"transition": M{
