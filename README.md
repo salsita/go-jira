@@ -7,12 +7,12 @@ JIRA REST API client for Go (Golang)
 The API is rather incomplete, but the parts that are implemented should work just fine.
 
 ```go
-import "github.com/salsita/go-jira/jira"
+import "github.com/salsita/go-jira/v2/jira"
 ```
 
 ## Documentation ##
 
-The generated documentation at [GoDoc](http://godoc.org/github.com/salsita/go-jira/jira).
+The generated documentation at [GoDoc](http://godoc.org/github.com/salsita/go-jira/v2/jira).
 
 ## License ##
 
