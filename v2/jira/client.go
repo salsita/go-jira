@@ -69,7 +69,7 @@ type Client struct {
 	optMaxPendingRequests int
 }
 
-func New(baseURL *url.URL, httpClient *http.Client, options ...func(*Client)) *Client {
+func NewClient(baseURL *url.URL, httpClient *http.Client, options ...func(*Client)) *Client {
 	// Create a Client object.
 	client := &Client{
 		httpClient:            httpClient,
