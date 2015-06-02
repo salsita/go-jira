@@ -56,6 +56,9 @@ type Client struct {
 	// Issue service.
 	Issues *IssueService
 
+	// Remote Issue Link service.
+	RemoteIssueLinks *RemoteIssueLinkService
+
 	// Version service.
 	Versions *VersionService
 
@@ -79,6 +82,7 @@ func New(baseURL *url.URL, httpClient *http.Client, options ...func(*Client)) *C
 	client.Myself = newMyselfService(client)
 	client.Projects = newProjectService(client)
 	client.Issues = newIssueService(client)
+	client.RemoteIssueLinks = newRemoteIssueLinkService(client)
 	client.Versions = newVersionService(client)
 
 	// Set custom options.
