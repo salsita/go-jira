@@ -56,6 +56,7 @@ type Issue struct {
 		Subtasks    []*Issue     `json:"subtasks,omitempty"`
 		Assignee    *User        `json:"assignee,omitempty"`
 		FixVersions []*Version   `json:"fixVersions,omitempty"`
+		Labels      []string     `json:"labels,omitempty"`
 		Status      *IssueStatus `json:"status,omitempty"`
 	} `json:"fields,omitempty"`
 }
