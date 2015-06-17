@@ -52,12 +52,13 @@ type Issue struct {
 			Subtask     bool   `json:"subtask,omitempty"`
 			IconURL     string `json:"iconUrl,omitempty"`
 		} `json:"issuetype,omitempty"`
-		Parent      *Issue       `json:"parent,omitempty"`
-		Subtasks    []*Issue     `json:"subtasks,omitempty"`
-		Assignee    *User        `json:"assignee,omitempty"`
-		FixVersions []*Version   `json:"fixVersions,omitempty"`
-		Labels      []string     `json:"labels,omitempty"`
-		Status      *IssueStatus `json:"status,omitempty"`
+		Parent      *Issue           `json:"parent,omitempty"`
+		Subtasks    []*Issue         `json:"subtasks,omitempty"`
+		Assignee    *User            `json:"assignee,omitempty"`
+		FixVersions []*Version       `json:"fixVersions,omitempty"`
+		Labels      []string         `json:"labels,omitempty"`
+		Status      *IssueStatus     `json:"status,omitempty"`
+		Resolution  *IssueResolution `json:"resolution,omitempty"`
 	} `json:"fields,omitempty"`
 }
 
@@ -68,6 +69,14 @@ type IssueStatus struct {
 	Name        string `json:"name,omitempty"`
 	Description string `json:"description,omitempty"`
 	IconURL     string `json:"iconUrl,omitempty"`
+}
+
+// IssueResolution represents an issue resolution, e.g. "Cannot Reproduce".
+type IssueResolution struct {
+	Id          string `json:"id,omitempty"`
+	Self        string `json:"self,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 // The service -----------------------------------------------------------------
