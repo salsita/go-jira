@@ -150,17 +150,11 @@ func (service *IssueService) Update(issueIdOrKey string, body interface{}) (*htt
 // PerformTransition performs the requested transition for the chosen issue.
 func (service *IssueService) PerformTransition(
 	issueIdOrKey string,
-	transitionId string,
+	transition interface{},
 ) (*http.Response, error) {
 
 	u := fmt.Sprintf("issue/%v/transitions", issueIdOrKey)
-	p := M{
-		"transition": M{
-			"id": transitionId,
-		},
-	}
-
-	req, err := service.client.NewRequest("POST", u, p)
+	req, err := service.client.NewRequest("POST", u, transition)
 	if err != nil {
 		return nil, err
 	}
