@@ -79,6 +79,30 @@ type IssueResolution struct {
 	Description string `json:"description,omitempty"`
 }
 
+type Transition struct {
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name	,omitempty"`
+	To   struct {
+		Self           string `json:"self,omitempty"`
+		Description    string `json:"description,omitempty"`
+		IconUrl        string `json:"iconUrl,omitempty"`
+		Name           string `json:"name,omitempty"`
+		Id             string `json:"id,omitempty"`
+		StatusCategory struct {
+			Self      string `json:"self,omitempty"`
+			Id        int    `json:"id,omitempty"`
+			Key       string `json:"key,omitempty"`
+			ColorName string `json:"colorName,omitempty"`
+			Name      string `json:"name,omitempty"`
+		}
+	}
+}
+
+type TransitionsInfo struct {
+	Expand      string       `json:"expand,omitempty"`
+	Transitions []Transition `json:"transitions,omitempty"`
+}
+
 // The service -----------------------------------------------------------------
 
 type IssueService struct {
@@ -160,4 +184,21 @@ func (service *IssueService) PerformTransition(
 	}
 
 	return service.client.Do(req, nil)
+}
+
+// GetTransitions returns list of the transitions possible for this issue by the current user.
+func (service *IssueService) GetTransitions(issueIdOrKey string) (*TransitionsInfo, *http.Response, error) {
+	u := fmt.Sprintf("issue/%v/transitions", issueIdOrKey)
+	req, err := service.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var transitionsInfo TransitionsInfo
+	resp, err := service.client.Do(req, &transitionsInfo)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return &transitionsInfo, resp, nil
 }
