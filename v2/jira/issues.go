@@ -65,9 +65,14 @@ type Issue struct {
 		Reporter       *User            `json:"reporter,omitempty"`
 		ResolutionDate string           `json:"resolutiondate,omitempty"`
 		Project        *Project         `json:"project,omitempty"`
-		Priority       *Priority        `json:"priority,omitempty"`
-		Components     []*Component     `json:"components,omitempty"`
-		ChangeLog      *ChangeLog       `json:"changelog,omitempty"`
+		Priority       struct {
+			Self    string `json:"self,omitempty"`
+			IconURL string `json:"iconUrl,omitempty"`
+			Name    string `json:"name,omitempty"`
+			Id      string `json:"id,omitempty"`
+		} `json:"priority,omitempty"`
+		Components []*Component `json:"components,omitempty"`
+		ChangeLog  *ChangeLog   `json:"changelog,omitempty"`
 	} `json:"fields,omitempty"`
 }
 
