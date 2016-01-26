@@ -59,6 +59,7 @@ type Issue struct {
 		Labels      []string         `json:"labels,omitempty"`
 		Status      *IssueStatus     `json:"status,omitempty"`
 		Resolution  *IssueResolution `json:"resolution,omitempty"`
+		Created     string           `json:"created,omitempty"`
 	} `json:"fields,omitempty"`
 }
 
