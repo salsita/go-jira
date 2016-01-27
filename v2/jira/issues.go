@@ -72,8 +72,8 @@ type Issue struct {
 			Id      string `json:"id,omitempty"`
 		} `json:"priority,omitempty"`
 		Components []*Component `json:"components,omitempty"`
-		ChangeLog  *ChangeLog   `json:"changelog,omitempty"`
 	} `json:"fields,omitempty"`
+	ChangeLog *ChangeLog `json:"changelog,omitempty"`
 }
 
 // IssueStatus represents an issue status, e.g. "Scheduled".
