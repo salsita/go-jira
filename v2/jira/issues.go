@@ -52,14 +52,28 @@ type Issue struct {
 			Subtask     bool   `json:"subtask,omitempty"`
 			IconURL     string `json:"iconUrl,omitempty"`
 		} `json:"issuetype,omitempty"`
-		Parent      *Issue           `json:"parent,omitempty"`
-		Subtasks    []*Issue         `json:"subtasks,omitempty"`
-		Assignee    *User            `json:"assignee,omitempty"`
-		FixVersions []*Version       `json:"fixVersions,omitempty"`
-		Labels      []string         `json:"labels,omitempty"`
-		Status      *IssueStatus     `json:"status,omitempty"`
-		Resolution  *IssueResolution `json:"resolution,omitempty"`
+		Parent         *Issue           `json:"parent,omitempty"`
+		Subtasks       []*Issue         `json:"subtasks,omitempty"`
+		Assignee       *User            `json:"assignee,omitempty"`
+		FixVersions    []*Version       `json:"fixVersions,omitempty"`
+		Labels         []string         `json:"labels,omitempty"`
+		Status         *IssueStatus     `json:"status,omitempty"`
+		Resolution     *IssueResolution `json:"resolution,omitempty"`
+		Created        string           `json:"created,omitempty"`
+		Updated        string           `json:"updated,omitempty"`
+		Creator        *User            `json:"creator,omitempty"`
+		Reporter       *User            `json:"reporter,omitempty"`
+		ResolutionDate string           `json:"resolutiondate,omitempty"`
+		Project        *Project         `json:"project,omitempty"`
+		Priority       struct {
+			Self    string `json:"self,omitempty"`
+			IconURL string `json:"iconUrl,omitempty"`
+			Name    string `json:"name,omitempty"`
+			Id      string `json:"id,omitempty"`
+		} `json:"priority,omitempty"`
+		Components []*Component `json:"components,omitempty"`
 	} `json:"fields,omitempty"`
+	ChangeLog *ChangeLog `json:"changelog,omitempty"`
 }
 
 // IssueStatus represents an issue status, e.g. "Scheduled".
